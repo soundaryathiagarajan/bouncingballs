@@ -1,13 +1,34 @@
 <!DOCTYPE html>
 <html> 
-	<head>			
+	<head>
+	<style type="text/css">
+	/*	input[type=range]{
+			-webkit-appearance : none;
+			background-color: silver;
+			width: 200px;
+			height: 20px;
+		}
+		input[type="range"]::-webkit-slider-thumb{
+			-webkit-appearance : none;
+			background-color: #666;
+			opacity: 0.5;
+			width: 10px;
+			height: 26px;
+		}*/
+	</style>			
 	</head>
 	<body style = "background-color:gray">
 		<div style="width: 800px; height:500px; margin: 300px auto;">
-		<canvas id = "bouncyBall" width = "500" height = "250" 
-		style = "border-style:inset;background-color:lightgray; border-width:5px;">
-		<script type = "text/javascript" src="drawBall.js"></script>
-		</canvas>
-	</div>
+			<canvas id = "bouncyBall" width = "500" height = "250" 
+			style = "border-style:inset;background-color:lightgray; border-width:5px;">
+			<script type = "text/javascript" src="app.js"></script>
+			</canvas><hr>
+			<div>
+				<font size="4" color="blue">Speed Control Bar:</font><input type="range"  id="speedRange" value="0" min="0" max="10" onchange="speedConrol(this.value)"><input id="speedRangeDisp" placeholder="speed limit" disabled=""><hr>
+			
+
+				<font size="4" color="blue">pause/play:</font><input type="button" onclick="pausePlay()" value="pause/play">
+			</div>
+		</div>
 	</body>
 </html>
