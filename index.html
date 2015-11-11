@@ -24,9 +24,10 @@
 			<script type = "text/javascript" src="app.js"></script>
 			</canvas><hr>
 			<div>
+				<input type="text" id="collisionCounter" value="0" disabled=""><hr>
+
 				<font size="4" color="blue">Speed Control Bar:</font><input type="range"  id="speedRange" value="0" min="0" max="10" onchange="speedConrol(this.value)"><input id="speedRangeDisp" placeholder="speed limit" disabled=""><hr>
 			
-
 				<font size="4" color="blue">pause/play:</font><input type="button" onclick="pausePlay()" value="pause/play">
 			</div>
 		</div>
