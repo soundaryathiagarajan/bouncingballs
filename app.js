@@ -5,7 +5,8 @@ var canvas = document.getElementById("bouncyBall"),
   gravity = .5,
   bounceFactor = .7;
 
-  console.log('This is canvas', canvas);
+
+  console.log('This is canvas', canvas, 'width', W, 'height', H);
 
 function Ball(x, y) {
   this.x = x;
@@ -16,9 +17,9 @@ function Ball(x, y) {
   // this.vy = 0;
   var directionArray = ['10','01','11','0-1','1-0','1-1'];
   var selectDirection = directionArray[Math.floor(Math.random()*directionArray.length)];
-  console.log(selectDirection, 'For each click');
-  console.log(selectDirection.slice(0,1))
-  console.log(selectDirection.slice(1,3))
+  // console.log(selectDirection, 'For each click');
+  // console.log(selectDirection.slice(0,1))
+  // console.log(selectDirection.slice(1,3))
   this.ballDx = this.initialDirectionX = parseInt(selectDirection.slice(0,1));
   this.ballDy = this.initialDirectionY = parseInt(selectDirection.slice(1,3));
 
@@ -27,22 +28,23 @@ function Ball(x, y) {
 }
 var pausePlayBool = false;
 var currentBallValues = [];
+
 function pausePlay(){
-  console.log('pause play called')
+  // console.log('pause play called')
   pausePlayBool = !pausePlayBool;
   
   if(pausePlayBool){
-    console.log('pause play called inside pause')
+    // console.log('pause play called inside pause')
     
     balls.forEach(function(val, key){
       currentBallValues.push(val);
       val.ballDx = val.ballDx*0;
       val.ballDy = val.ballDy*0;
     })
-    console.log('balls',balls);
-    console.log('currentBallValues', currentBallValues);
+    // console.log('balls',balls);
+    // console.log('currentBallValues', currentBallValues);
   } else {
-    console.log('pause play called inside play', currentBallValues);
+    // console.log('pause play called inside play', currentBallValues);
     currentBallValues.forEach(function(val1, key1){
       balls.forEach(function(val0, key0){
         val0.ballDx = val1.initialDirectionX+parseInt(document.getElementById('speedRange').value);
@@ -50,21 +52,21 @@ function pausePlay(){
       });
     })
     currentBallValues.length = 0;
-    console.log(balls);
+    // console.log(balls);
     // balls = currentBallValues;
   }
 }
 function speedConrol (argument) {
   // body...
   document.getElementById('speedRangeDisp').value = argument;
-  console.log(argument);
+  // console.log(argument);
   intSpeed = parseInt(argument)
-  console.log(balls);
+  // console.log(balls);
   balls.forEach(function(val, key){
     val.ballDx = val.initialDirectionX+intSpeed;
     val.ballDy = val.initialDirectionY+intSpeed;
-    console.log('val.ballDx', val.ballDx);
-    console.log('val.ballDy', val.ballDy);
+    // console.log('val.ballDx', val.ballDx);
+    // console.log('val.ballDy', val.ballDy);
   })
 }
 
@@ -87,7 +89,20 @@ Ball.prototype = {
   	if(this.x > W - this.radius || this.x < this.radius){
   		this.ballDx = -1 * this.ballDx;
   	}
-    // console.log(this.x);  	
+    if(this.x == 14 || this.x == 486 || this.y == 14 || this.y == 236){
+     // console.log(this.x, this.y);
+     document.getElementById('collisionCounter').value = parseInt(document.getElementById('collisionCounter').value)+1;
+     setTimeout(function(){
+      document.getElementById('collisionCounter').value = parseInt(document.getElementById('collisionCounter').value)-1;
+     },1000)
+    }
+    // if(this.x == 486)
+    //   console.log(this.x, this.y);
+    // if(this.y == 14)
+    //  console.log(this.x, this.y);
+    // if(this.y == 236)
+    //  console.log(this.x, this.y);
+
   }
 };
 
@@ -101,8 +116,8 @@ canvas.addEventListener('click', function(event) {
     x = event.clientX - rect.left,
     y = event.clientY - rect.top;
   balls.push(new Ball(x, y));
-  console.log(balls.length);
-  console.log(balls)
+  // console.log(balls.length);
+  // console.log(balls)
 });
 
 
